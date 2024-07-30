@@ -1,15 +1,26 @@
 {
   "name": "mcsmanager-workspace",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.6.0",
+  "workspaces": [
+    "common",
+    "daemon",
+    "frontend",
+    "panel",
+    "languages"
+  ],
   "scripts": {
     "i18n": "i18next-scanner --config i18-scanner.config.js",
-    "preview-build": "cd common && npm install && npm run build",
-    "daemon": "cd daemon &&  npm run dev",
-    "frontend": "cd frontend && npm run dev",
-    "panel": "cd panel && npm run dev"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "preview-build": "turbo build --filter=common",
+    "daemon": "turbo dev --filter=mcsmanager-daemon",
+    "frontend": "turbo dev --filter=mcsmanager-ui",
+    "panel": "turbo dev --filter=mcsmanager-panel"
   },
-  "dependencies": {
+  "devDependencies": {
     "crc": "^4.3.2",
-    "i18next-scanner": "^4.4.0"
+    "i18next-scanner": "^4.4.0",
+    "turbo": "^2.0.9"
   }
 }
